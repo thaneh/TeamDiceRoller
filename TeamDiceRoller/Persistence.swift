@@ -14,8 +14,9 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
+            let newItem = DiceRoll(context: viewContext)
             newItem.timestamp = Date()
+            newItem.diceValues = [1,2,3,4,5]
         }
         do {
             try viewContext.save()

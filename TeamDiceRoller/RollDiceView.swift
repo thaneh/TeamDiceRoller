@@ -14,11 +14,21 @@ struct RollDiceView: View {
     
     @State private var diceArray = [Int]()
     
+    @Environment(\.managedObjectContext) private var viewContext
+
     func updateDiceValues() {
         diceArray.removeAll()
         for _ in 0..<numberOfDice {
             diceArray.append(Int.random(in: 1...numberOfSides))
         }
+        saveDice()
+    }
+    
+    func saveDice(){
+        let newItem = DiceRoll(context: viewContext)
+        newItem.timestamp = Date()
+        newItem.diceValues = diceArray
+        try? viewContext.save()
     }
     
     var body: some View {
