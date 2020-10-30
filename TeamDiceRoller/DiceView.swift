@@ -16,30 +16,30 @@ struct DieView: View {
     var body: some View {
         
         Group {
-            if (displayNum <= 6) {
-                Image(systemName: "die.face.\(displayNum)")
-                    .resizable()
-                    .frame(width: size, height: size)
-            } else {
+//            if (displayNum <= 6) {
+//                Image(systemName: "die.face.\(displayNum)")
+//                    .resizable()
+//                    .frame(width: size, height: size)
+//            } else {
                 Text("\(displayNum)")
                     .frame(width: size, height: size)
                     .background(Color.clear)
                     .border(Color(.label), width: 3)
                     .clipShape(RoundedRectangle(cornerRadius: 6.0))
-            }
+        }.onAppear {
+            doAnim(newValue: dieValue)
         }
-        .onChange(of: dieValue, perform: { newValue in
-            displayNum = 1
-            doAnim(newValue: newValue)
-        })
     }
     
     func doAnim (newValue: Int, _ time:Double = 0.1) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + time) {
-            if (displayNum < newValue) {
-                displayNum += 1
-                
-                doAnim(newValue: newValue, Double(displayNum) / 20)
+        print ("doAnim value: \(newValue)")
+        for i in 1...10  {
+            DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(i * i) / 100) {
+                if (i == 10) {
+                    displayNum = newValue
+                } else {
+                    displayNum = Int.random(in: 1...10)
+                }
             }
         }
     }

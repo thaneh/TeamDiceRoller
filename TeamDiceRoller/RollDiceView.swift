@@ -14,15 +14,16 @@ struct RollDiceView: View {
     
     @State private var diceArray = [Int]()
     
+    @State private var id = 1
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     func updateDiceValues() {
-//        diceArray.removeAll()
-        var newArr = [Int]()
+        id += 1
+        diceArray.removeAll()
         for _ in 0..<numberOfDice {
-            newArr.append(Int.random(in: 1...numberOfSides))
+            diceArray.append(Int.random(in: 1...numberOfSides))
         }
-        diceArray = newArr
         print("update dice values: \(diceArray.debugDescription)")
         saveDice()
     }
@@ -36,7 +37,7 @@ struct RollDiceView: View {
     
     var body: some View {
         VStack {
-            DiceView(theDice: diceArray)
+            DiceView(theDice: diceArray).id(id)
             Stepper("Number of dice (\(numberOfDice))", value: $numberOfDice, in:1...20).padding(.horizontal)
             Stepper("Number of sides (\(numberOfSides))", value: $numberOfSides, in:2...20).padding(.horizontal)
             Button(action: {
