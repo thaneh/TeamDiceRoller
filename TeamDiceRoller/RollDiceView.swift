@@ -24,7 +24,6 @@ struct RollDiceView: View {
         for _ in 0..<numberOfDice {
             diceArray.append(Int.random(in: 1...numberOfSides))
         }
-        print("update dice values: \(diceArray.debugDescription)")
         saveDice()
     }
     
@@ -51,7 +50,6 @@ struct RollDiceView: View {
     }
     
     var diceTotal: Int {
-        print(diceArray.debugDescription)
         return diceArray.reduce(0, +)
     }
 }

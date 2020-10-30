@@ -32,7 +32,6 @@ struct DieView: View {
     }
     
     func doAnim (newValue: Int, _ time:Double = 0.1) {
-        print ("doAnim value: \(newValue)")
         for i in 1...10  {
             DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(i * i) / 100) {
                 if (i == 10) {

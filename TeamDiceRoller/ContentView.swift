@@ -20,7 +20,7 @@ struct ContentView: View {
             RollDiceView().tabItem{
                 Label("Roll them dice", systemImage:"die.face.3")
             }
-            Text("View 2").tabItem{
+            HistoryView().tabItem{
                 Label("History", systemImage:"list.number")
             }
 
