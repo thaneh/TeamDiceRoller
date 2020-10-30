@@ -21,14 +21,10 @@ struct RollDiceView: View {
         }
     }
     
-    private var diceValues:String {
-        diceArray.debugDescription
-    }
-    
     var body: some View {
         VStack {
-            Text("\(diceValues)")
-            Stepper("Number of dice (\(numberOfDice))", value: $numberOfDice, in:1...10).padding(.horizontal)
+            DiceView(theDice: diceArray)
+            Stepper("Number of dice (\(numberOfDice))", value: $numberOfDice, in:1...20).padding(.horizontal)
             Stepper("Number of sides (\(numberOfSides))", value: $numberOfSides, in:2...20).padding(.horizontal)
             Button(action: {
                 updateDiceValues()
