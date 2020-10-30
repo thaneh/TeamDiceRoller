@@ -28,18 +28,18 @@ struct DieView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 6.0))
             }
         }
-        .onChange(of: dieValue, perform: { _ in
+        .onChange(of: dieValue, perform: { newValue in
             displayNum = 1
-            doAnim()
+            doAnim(newValue: newValue)
         })
     }
     
-    func doAnim (_ time:Double = 0.1) {
+    func doAnim (newValue: Int, _ time:Double = 0.1) {
         DispatchQueue.main.asyncAfter(deadline: .now() + time) {
-            if (displayNum < dieValue) {
+            if (displayNum < newValue) {
                 displayNum += 1
                 
-                doAnim(Double(displayNum) / 20)
+                doAnim(newValue: newValue, Double(displayNum) / 20)
             }
         }
     }

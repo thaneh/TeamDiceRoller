@@ -17,10 +17,13 @@ struct RollDiceView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     func updateDiceValues() {
-        diceArray.removeAll()
+//        diceArray.removeAll()
+        var newArr = [Int]()
         for _ in 0..<numberOfDice {
-            diceArray.append(Int.random(in: 1...numberOfSides))
+            newArr.append(Int.random(in: 1...numberOfSides))
         }
+        diceArray = newArr
+        print("update dice values: \(diceArray.debugDescription)")
         saveDice()
     }
     
@@ -41,7 +44,14 @@ struct RollDiceView: View {
             }, label: {
                 Text("Roll Dice")
             })
+            .padding()
+            Text("Total: \(diceTotal)")
         }.onAppear(perform:updateDiceValues)
+    }
+    
+    var diceTotal: Int {
+        print(diceArray.debugDescription)
+        return diceArray.reduce(0, +)
     }
 }
 
