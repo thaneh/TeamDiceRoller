@@ -24,7 +24,7 @@ struct DieView: View {
                 Text("\(displayNum)")
                     .frame(width: size, height: size)
                     .background(Color.clear)
-                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
+                    .border(Color(.label), width: 3)
                     .clipShape(RoundedRectangle(cornerRadius: 6.0))
             }
         }
