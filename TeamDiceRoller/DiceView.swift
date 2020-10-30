@@ -11,19 +11,36 @@ struct DieView: View {
     let dieValue: Int
     let size:CGFloat = 30.0
     
+    @State private var displayNum:Int = 1
+    
     var body: some View {
         
-        if (dieValue <= 6) {
-            
-            Image(systemName: "die.face.\(dieValue)")
-                .resizable()
-                .frame(width: size, height: size)
-        } else {
-            Text("\(dieValue)")
-                .frame(width: size, height: size)
-                .background(Color.clear)
-                .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
-                .clipShape(RoundedRectangle(cornerRadius: 6.0))
+        Group {
+            if (displayNum <= 6) {
+                Image(systemName: "die.face.\(displayNum)")
+                    .resizable()
+                    .frame(width: size, height: size)
+            } else {
+                Text("\(displayNum)")
+                    .frame(width: size, height: size)
+                    .background(Color.clear)
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/, width: 3)
+                    .clipShape(RoundedRectangle(cornerRadius: 6.0))
+            }
+        }
+        .onChange(of: dieValue, perform: { _ in
+            displayNum = 1
+            doAnim()
+        })
+    }
+    
+    func doAnim (_ time:Double = 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+            if (displayNum < dieValue) {
+                displayNum += 1
+                
+                doAnim(Double(displayNum) / 20)
+            }
         }
     }
 }
