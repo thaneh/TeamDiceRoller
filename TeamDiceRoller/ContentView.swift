@@ -10,27 +10,20 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
 
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+        TabView {
+            Text("Dice").tabItem{
+                Label("Roll them dice", systemImage:"die.face.3")
             }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
+            Text("View 2").tabItem{
+                Label("History", systemImage:"list.number")
+            }
 
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
         }
     }
 
