@@ -9,8 +9,8 @@ import SwiftUI
 
 
 struct RollDiceView: View {
-    @State private var numberOfSides = 6
-    @State private var numberOfDice = 2
+    @State private var numberOfSides = 10
+    @State private var numberOfDice = 5
     
     @State private var diceArray = [Int]()
     
