@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A7212A2254C86AA005DEB1A /* RollDiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7212A1254C86AA005DEB1A /* RollDiceView.swift */; };
 		F0C5BBB3254C7D9700F1A3CB /* TeamDiceRollerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBB2254C7D9700F1A3CB /* TeamDiceRollerApp.swift */; };
 		F0C5BBB5254C7D9700F1A3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBB4254C7D9700F1A3CB /* ContentView.swift */; };
 		F0C5BBB7254C7D9900F1A3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0C5BBB6254C7D9900F1A3CB /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A7212A1254C86AA005DEB1A /* RollDiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollDiceView.swift; sourceTree = "<group>"; };
 		F0C5BBAF254C7D9700F1A3CB /* TeamDiceRoller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamDiceRoller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C5BBB2254C7D9700F1A3CB /* TeamDiceRollerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDiceRollerApp.swift; sourceTree = "<group>"; };
 		F0C5BBB4254C7D9700F1A3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				F0C5BBC0254C7D9900F1A3CB /* Info.plist */,
 				F0C5BBBD254C7D9900F1A3CB /* TeamDiceRoller.xcdatamodeld */,
 				F0C5BBB8254C7D9900F1A3CB /* Preview Content */,
+				5A7212A1254C86AA005DEB1A /* RollDiceView.swift */,
 			);
 			path = TeamDiceRoller;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				F0C5BBBC254C7D9900F1A3CB /* Persistence.swift in Sources */,
 				F0C5BBB5254C7D9700F1A3CB /* ContentView.swift in Sources */,
 				F0C5BBB3254C7D9700F1A3CB /* TeamDiceRollerApp.swift in Sources */,
+				5A7212A2254C86AA005DEB1A /* RollDiceView.swift in Sources */,
 				F0C5BBBF254C7D9900F1A3CB /* TeamDiceRoller.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
