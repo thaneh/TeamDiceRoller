@@ -4,7 +4,6 @@
 //
 //  Created by Thane Heninger on 10/30/20.
 //
-//  Can I push to this?
 
 import SwiftUI
 import CoreData
@@ -18,7 +17,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            Text("Dice").tabItem{
+            RollDiceView().tabItem{
                 Label("Roll them dice", systemImage:"die.face.3")
             }
             Text("View 2").tabItem{
