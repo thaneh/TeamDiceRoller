@@ -7,37 +7,64 @@
 
 import SwiftUI
 
+//struct DieImage: View {
+//    let dieValue: Int
+//    let size:CGFloat = 30.0
+//
+//    var body: some View {
+//        if (dieValue <= 6) {
+//            Image(systemName: "die.face.\(dieValue)")
+//                .resizable()
+//                .frame(width: size, height: size)
+//        } else {
+//            Text("\(dieValue)")
+//                .frame(width: size, height: size)
+//                .background(Color.clear)
+//                .border(Color(.label), width: 3)
+//                .clipShape(RoundedRectangle(cornerRadius: 6.0))
+//        }
+//    }
+//}
+
 struct DieView: View {
     let dieValue: Int
     let size:CGFloat = 30.0
     
-    @State private var displayNum:Int = 1
+    @State private var displayNum: Int = 1
+    @State private var animated = false
     
     var body: some View {
         
         Group {
-//            if (displayNum <= 6) {
-//                Image(systemName: "die.face.\(displayNum)")
-//                    .resizable()
-//                    .frame(width: size, height: size)
-//            } else {
+            if (displayNum <= 6) {
+                Image(systemName: "die.face.\(displayNum)")
+                    .resizable()
+                    .frame(width: size, height: size)
+            } else {
                 Text("\(displayNum)")
                     .frame(width: size, height: size)
                     .background(Color.clear)
                     .border(Color(.label), width: 3)
                     .clipShape(RoundedRectangle(cornerRadius: 6.0))
-        }.onAppear {
-            doAnim(newValue: dieValue)
+            }
         }
+//        DieImage(dieValue: displayNum)
+            .onAppear {
+                print("DieView onAppear for \(dieValue)")
+                doAnim(newValue: dieValue)
+            }
     }
     
     func doAnim (newValue: Int, _ time:Double = 0.1) {
-        for i in 1...10  {
-            DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(i * i) / 100) {
-                if (i == 10) {
-                    displayNum = newValue
-                } else {
-                    displayNum = Int.random(in: 1...10)
+        if !animated {
+            animated = true
+            for i in 1...10  {
+                DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(i * i) / 100) {
+                    if (i == 10) {
+                        displayNum = newValue
+                    } else {
+                        displayNum = Int.random(in: 1...10)
+                    }
                 }
             }
         }
