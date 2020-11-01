@@ -50,7 +50,7 @@ struct DieView: View {
         }
 //        DieImage(dieValue: displayNum)
             .onAppear {
-                print("DieView onAppear for \(dieValue)")
+//                print("DieView onAppear for \(dieValue)")
                 doAnim(newValue: dieValue)
             }
     }

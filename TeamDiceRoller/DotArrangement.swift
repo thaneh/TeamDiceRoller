@@ -17,7 +17,7 @@ struct DotArrangement {
     static private let max5x5Sides = max5x5 / 5 * 2
     static private let max5x5Ring = 4 * 4
     
-    private var in3x3: Bool {
+    var in3x3: Bool {
         quantity <= Self.max3x3
     }
     

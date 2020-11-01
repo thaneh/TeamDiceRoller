@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DotView: View {
-    var size = CGFloat(18)
+    let size: CGFloat
     var body: some View {
         Circle()
             .frame(width: size, height: size)
@@ -17,26 +17,20 @@ struct DotView: View {
 
 struct DotStack: View {
     let arrangement: [Bool]
-    let height: CGFloat
-    let smallDots: Bool
-    
-    var dotSpacing: CGFloat {
-        let spacing = (height - 18 * 5) / 4
-        print("dotSpacing(height: \(height)): \(spacing)")
-        return spacing
-    }
+    let dotSpacing: CGFloat
+    let dotSize: CGFloat
     
     var body: some View {
         VStack(spacing: dotSpacing) {
             if arrangement[0] {
-                DotView(size: smallDots ? 9 : 18)
+                DotView(size: dotSize)
             } else {
                 EmptyView()
             }
             ForEach(arrangement.dropFirst(), id: \.self) {
                 Spacer()
                 if $0 {
-                    DotView(size: smallDots ? 9 : 18)
+                    DotView(size: dotSize)
                 } else {
                     EmptyView()
                 }
@@ -52,6 +46,11 @@ struct ArrangedDots: View {
         !DotArrangement.allFalse(dots)
     }
     
+    func dotSize(from totalWidth: CGFloat) -> CGFloat {
+        DotArrangement.init(quantity: quantity).in3x3 ?
+            totalWidth * 0.26 : totalWidth * 0.16
+    }
+    
     var firstStack: [Bool] {
         DotArrangement(quantity: quantity).farLeftDots
     }
@@ -65,8 +64,8 @@ struct ArrangedDots: View {
     }
     
     func stackSpacing(from totalWidth: CGFloat) -> CGFloat {
-        let spacing = (totalWidth - 18 * 6) / 4
-        print("stackSpacing(from: \(totalWidth)) -> \(spacing)")
+        let spacing = -totalWidth * 0.20
+//        print("stackSpacing(from: \(totalWidth)) -> \(spacing)")
         return spacing
     }
     
@@ -75,8 +74,8 @@ struct ArrangedDots: View {
             HStack(spacing: stackSpacing(from: geo.size.width)) {
                 if hasDots(dots: firstStack) {
                     DotStack(arrangement: firstStack,
-                             height: geo.size.height,
-                             smallDots: quantity > 9)
+                             dotSpacing: stackSpacing(from: geo.size.width),
+                             dotSize: dotSize(from: geo.size.width))
                 } else {
                     EmptyView()
                 }
@@ -84,20 +83,20 @@ struct ArrangedDots: View {
                     Spacer()
                     if hasDots(dots: $0) {
                         DotStack(arrangement: $0,
-                                 height: geo.size.height,
-                                 smallDots: quantity > 9)
+                                 dotSpacing: stackSpacing(from: geo.size.width),
+                                 dotSize: dotSize(from: geo.size.width))
                     } else {
                         EmptyView()
                     }
                 }
             }
         }
-        .padding(16)
     }
 }
 
 struct DottedDiceView: View {
     let value: Int
+    let size: CGFloat
     
     var body: some View {
         HStack {
@@ -105,17 +104,19 @@ struct DottedDiceView: View {
                 Image(systemName: "die.face.\(value)")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: size, height: size)
             } else {
                 Text("\(value)").font(.largeTitle)
             }
-            RoundedRectangle(cornerRadius: 15.0)
-                .inset(by: 4)
-                .stroke(lineWidth: 8)
-                .overlay(ArrangedDots(quantity: value))
-                .frame(width: 100, height: 100)
+            RoundedRectangle(cornerRadius: size * 0.15)
+                .inset(by: size * 0.04)
+                .stroke(lineWidth: size * 0.08)
+                .overlay(ArrangedDots(quantity: value)
+                            .padding(size * 0.16)
+                )
+                .frame(width: size, height: size)
         }
-        .frame(width: 220, height: 100)
+        .frame(width: size * 2 + 20, height: size)
     }
 }
 
@@ -123,7 +124,7 @@ struct DottedDiceView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             ForEach(1 ..< 26) {
-                DottedDiceView(value: $0)
+                DottedDiceView(value: $0, size: 50)
             }
         }
         .previewLayout(.sizeThatFits)

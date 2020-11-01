@@ -14,6 +14,8 @@ struct ContentView: View {
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
 //        animation: .default)
 //    private var items: FetchedResults<Item>
+    @State private var dieSize = CGFloat(100)
+    @State private var id = 0
 
     var body: some View {
         TabView {
@@ -23,10 +25,17 @@ struct ContentView: View {
             HistoryView().tabItem{
                 Label("History", systemImage:"list.number")
             }
-            ScrollView {
-                ForEach(1 ..< 26) {
-                    DottedDiceView(value: $0)
+            
+            VStack {
+                Slider(value: $dieSize, in: 10...100) { _ in
+                    id += 1
                 }
+                ScrollView {
+                    ForEach(1 ..< 26) {
+                        DottedDiceView(value: $0, size: dieSize)
+                    }
+                }
+                .id(id)
             }
             .tabItem {
                 Label("Arrangement", systemImage: "scribble")
