@@ -64,4 +64,38 @@ struct DotArrangement {
             return 2 + centerFor3x3(with: quantity - Self.max5x5Ring)
         }
     }
+    
+    var farLeftDots: [Bool] {
+        [farSideCount > 1, farSideCount > 4, farSideCount > 2, farSideCount > 4, farSideCount > 0]
+    }
+    
+    var midLeftDots: [Bool] {
+        if quantity < Self.max5x5Ring {
+            return [false, midSideCount > 1, false, midSideCount > 0, false]
+        } else {
+            return [true, midSideCount > 3, midSideCount > 4, midSideCount > 2, true]
+        }
+    }
+    
+    var centerDots: [Bool] {
+        [centerCount > 1, centerCount > 3, centerCount % 2 == 1, centerCount > 3, centerCount > 1]
+    }
+    
+    var midRightDots: [Bool] {
+        if quantity < Self.max5x5Ring {
+            return [false, midSideCount > 0, false, midSideCount > 1, false]
+        } else {
+            return [true, midSideCount > 2, midSideCount > 4, midSideCount > 3, true]
+        }
+    }
+    
+    var farRightDots: [Bool] {
+        [farSideCount > 0, farSideCount > 4, farSideCount > 2, farSideCount > 4, farSideCount > 1]
+    }
+    
+    static func allFalse(_ values: [Bool]) -> Bool {
+        values.reduce(into: true) { result, value in
+            result = result && !value
+        }
+    }
 }

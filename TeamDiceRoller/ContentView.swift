@@ -23,7 +23,14 @@ struct ContentView: View {
             HistoryView().tabItem{
                 Label("History", systemImage:"list.number")
             }
-
+            ScrollView {
+                ForEach(1 ..< 26) {
+                    DottedDiceView(value: $0)
+                }
+            }
+            .tabItem {
+                Label("Arrangement", systemImage: "scribble")
+            }
         }
     }
 
