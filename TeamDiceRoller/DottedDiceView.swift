@@ -20,20 +20,20 @@ struct DotStack: View {
     let dotSpacing: CGFloat
     let dotSize: CGFloat
     
+    @ViewBuilder func dotOrEmpty(isDot: Bool) -> some View {
+        if isDot {
+            DotView(size: dotSize)
+        } else {
+            EmptyView()
+        }
+    }
+    
     var body: some View {
         VStack(spacing: dotSpacing) {
-            if arrangement[0] {
-                DotView(size: dotSize)
-            } else {
-                EmptyView()
-            }
+            dotOrEmpty(isDot: arrangement[0])
             ForEach(arrangement.dropFirst(), id: \.self) {
                 Spacer()
-                if $0 {
-                    DotView(size: dotSize)
-                } else {
-                    EmptyView()
-                }
+                dotOrEmpty(isDot: $0)
             }
         }
     }
@@ -69,25 +69,23 @@ struct ArrangedDots: View {
         return spacing
     }
     
+    @ViewBuilder func dotsOrEmpty(stack: [Bool], with width: CGFloat) -> some View {
+        if hasDots(dots: stack) {
+            DotStack(arrangement: stack,
+                     dotSpacing: stackSpacing(from: width),
+                     dotSize: dotSize(from: width))
+        } else {
+            EmptyView()
+        }
+    }
+    
     var body: some View {
         GeometryReader { geo in
             HStack(spacing: stackSpacing(from: geo.size.width)) {
-                if hasDots(dots: firstStack) {
-                    DotStack(arrangement: firstStack,
-                             dotSpacing: stackSpacing(from: geo.size.width),
-                             dotSize: dotSize(from: geo.size.width))
-                } else {
-                    EmptyView()
-                }
+                dotsOrEmpty(stack: firstStack, with: geo.size.width)
                 ForEach(stacksExceptFirst, id: \.self) {
                     Spacer()
-                    if hasDots(dots: $0) {
-                        DotStack(arrangement: $0,
-                                 dotSpacing: stackSpacing(from: geo.size.width),
-                                 dotSize: dotSize(from: geo.size.width))
-                    } else {
-                        EmptyView()
-                    }
+                    dotsOrEmpty(stack: $0, with: geo.size.width)
                 }
             }
         }
@@ -124,7 +122,7 @@ struct DottedDiceView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             ForEach(1 ..< 26) {
-                DottedDiceView(value: $0, size: 50)
+                DottedDiceView(value: $0, size: 100)
             }
         }
         .previewLayout(.sizeThatFits)
