@@ -47,7 +47,7 @@ struct ArrangedDots: View {
     }
     
     func dotSize(from totalWidth: CGFloat) -> CGFloat {
-        DotArrangement.init(quantity: quantity).in3x3 ?
+        DotArrangement(quantity: quantity).in3x3 ?
             totalWidth * 0.26 : totalWidth * 0.16
     }
     
@@ -92,6 +92,63 @@ struct ArrangedDots: View {
     }
 }
 
+struct DottedDieView: View {
+    let value: Int
+    
+    var stacks: [[Bool]] {
+        let arrangement = DotArrangement(quantity: value)
+        return [arrangement.farLeftDots,
+                arrangement.midLeftDots,
+                arrangement.centerDots,
+                arrangement.midRightDots,
+                arrangement.farRightDots]
+    }
+    
+    func padding(with geo: GeometryProxy) -> CGFloat {
+        if DotArrangement(quantity: value).in3x3 {
+            return geo.size.width * 0.15
+        } else {
+            return geo.size.width * 0.18
+        }
+    }
+    
+    func spacing(with geo: GeometryProxy) -> CGFloat {
+        geo.size.width * 0.13
+    }
+    
+    func columnOffset(for column: Int, with geo: GeometryProxy) -> CGFloat {
+        return padding(with: geo) + CGFloat(column) * spacing(with: geo)
+    }
+    
+    func rowOffset(for row: Int, with geo: GeometryProxy) -> CGFloat {
+        return padding(with: geo) + CGFloat(row) * spacing(with: geo)
+    }
+    
+    func dotSize(with geo: GeometryProxy) -> CGFloat {
+        let totalWidth = geo.size.width
+        return DotArrangement(quantity: value).in3x3 ?
+            totalWidth * 0.18 : totalWidth * 0.10
+    }
+    
+    var body: some View {
+        GeometryReader { geo in
+            RoundedRectangle(cornerRadius: geo.size.width * 0.15)
+                .inset(by: geo.size.width * 0.04)
+                .stroke(lineWidth: geo.size.width * 0.08)
+                
+            ForEach(0 ..< 5) { columnIndex in
+                ForEach(0 ..< stacks[columnIndex].count) { rowIndex in
+                    if stacks[columnIndex][rowIndex] {
+                        DotView(size: dotSize(with: geo))
+                            .offset(x: columnOffset(for: columnIndex, with: geo),
+                                    y: rowOffset(for: rowIndex, with: geo))
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct DottedDiceView: View {
     let value: Int
     let size: CGFloat
@@ -106,13 +163,15 @@ struct DottedDiceView: View {
             } else {
                 Text("\(value)").font(.largeTitle)
             }
-            RoundedRectangle(cornerRadius: size * 0.15)
-                .inset(by: size * 0.04)
-                .stroke(lineWidth: size * 0.08)
-                .overlay(ArrangedDots(quantity: value)
-                            .padding(size * 0.16)
-                )
-                .frame(width: size, height: size)
+            DottedDieView(value: value)
+                .frame(width: 100, height: 100)
+//            RoundedRectangle(cornerRadius: size * 0.15)
+//                .inset(by: size * 0.04)
+//                .stroke(lineWidth: size * 0.08)
+//                .overlay(ArrangedDots(quantity: value)
+//                            .padding(size * 0.16)
+//                )
+//                .frame(width: size, height: size)
         }
         .frame(width: size * 2 + 20, height: size)
     }
