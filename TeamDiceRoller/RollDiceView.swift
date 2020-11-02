@@ -38,7 +38,7 @@ struct RollDiceView: View {
         VStack {
             DiceView(theDice: diceArray).id(id)
             Stepper("Number of dice (\(numberOfDice))", value: $numberOfDice, in:1...20).padding(.horizontal)
-            Stepper("Number of sides (\(numberOfSides))", value: $numberOfSides, in:2...20).padding(.horizontal)
+            Stepper("Number of sides (\(numberOfSides))", value: $numberOfSides, in:2...100).padding(.horizontal)
             Button(action: {
                 updateDiceValues()
             }, label: {

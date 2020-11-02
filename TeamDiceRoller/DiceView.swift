@@ -36,17 +36,19 @@ struct DieView: View {
     var body: some View {
         
         Group {
-            if (displayNum <= 6) {
-                Image(systemName: "die.face.\(displayNum)")
-                    .resizable()
-                    .frame(width: size, height: size)
-            } else {
-                Text("\(displayNum)")
-                    .frame(width: size, height: size)
-                    .background(Color.clear)
-                    .border(Color(.label), width: 3)
-                    .clipShape(RoundedRectangle(cornerRadius: 6.0))
-            }
+            DottedDieView(value: displayNum)
+                .frame(width: size, height: size)
+//            if (displayNum <= 6) {
+//                Image(systemName: "die.face.\(displayNum)")
+//                    .resizable()
+//                    .frame(width: size, height: size)
+//            } else {
+//                Text("\(displayNum)")
+//                    .frame(width: size, height: size)
+//                    .background(Color.clear)
+//                    .border(Color(.label), width: 3)
+//                    .clipShape(RoundedRectangle(cornerRadius: 6.0))
+//            }
         }
 //        DieImage(dieValue: displayNum)
             .onAppear {
