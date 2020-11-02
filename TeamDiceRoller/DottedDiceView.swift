@@ -95,8 +95,16 @@ struct ArrangedDots: View {
 struct DottedDieView: View {
     let value: Int
     
+    var quantity: Int {
+        (value - 1) % 25 + 1
+    }
+    
+    var color: Color {
+        [.white, .gray, .green, .red][(value - 1) / 25]
+    }
+    
     var stacks: [[Bool]] {
-        let arrangement = DotArrangement(quantity: value)
+        let arrangement = DotArrangement(quantity: quantity)
         return [arrangement.farLeftDots,
                 arrangement.midLeftDots,
                 arrangement.centerDots,
@@ -105,15 +113,19 @@ struct DottedDieView: View {
     }
     
     func padding(with geo: GeometryProxy) -> CGFloat {
-        if DotArrangement(quantity: value).in3x3 {
+        if DotArrangement(quantity: quantity).in3x3 {
             return geo.size.width * 0.15
         } else {
-            return geo.size.width * 0.18
+            return geo.size.width * 0.16
         }
     }
     
     func spacing(with geo: GeometryProxy) -> CGFloat {
-        geo.size.width * 0.13
+        if DotArrangement(quantity: quantity).in3x3 {
+            return geo.size.width * 0.13
+        } else {
+            return geo.size.width * 0.15
+        }
     }
     
     func columnOffset(for column: Int, with geo: GeometryProxy) -> CGFloat {
@@ -126,15 +138,15 @@ struct DottedDieView: View {
     
     func dotSize(with geo: GeometryProxy) -> CGFloat {
         let totalWidth = geo.size.width
-        return DotArrangement(quantity: value).in3x3 ?
+        return DotArrangement(quantity: quantity).in3x3 ?
             totalWidth * 0.18 : totalWidth * 0.10
     }
     
     var body: some View {
         GeometryReader { geo in
             RoundedRectangle(cornerRadius: geo.size.width * 0.15)
-                .inset(by: geo.size.width * 0.04)
-                .stroke(lineWidth: geo.size.width * 0.08)
+                .strokeBorder(Color.black, lineWidth: geo.size.width * 0.08)
+                .background(RoundedRectangle(cornerRadius: geo.size.width * 0.15).fill(color))
                 
             ForEach(0 ..< 5) { columnIndex in
                 ForEach(0 ..< stacks[columnIndex].count) { rowIndex in
@@ -164,7 +176,7 @@ struct DottedDiceView: View {
                 Text("\(value)").font(.largeTitle)
             }
             DottedDieView(value: value)
-                .frame(width: 100, height: 100)
+                .frame(width: size, height: size)
 //            RoundedRectangle(cornerRadius: size * 0.15)
 //                .inset(by: size * 0.04)
 //                .stroke(lineWidth: size * 0.08)
@@ -180,7 +192,7 @@ struct DottedDiceView: View {
 struct DottedDiceView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ForEach(1 ..< 26) {
+            ForEach(1 ..< 101) {
                 DottedDiceView(value: $0, size: 100)
             }
         }

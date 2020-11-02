@@ -31,7 +31,7 @@ struct ContentView: View {
                     id += 1
                 }
                 ScrollView {
-                    ForEach(1 ..< 26) {
+                    ForEach(1 ..< 101) {
                         DottedDiceView(value: $0, size: dieSize)
                     }
                 }
