@@ -10,7 +10,8 @@
 		5A7212A2254C86AA005DEB1A /* RollDiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7212A1254C86AA005DEB1A /* RollDiceView.swift */; };
 		5A7212AA254CC6D4005DEB1A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7212A9254CC6D4005DEB1A /* HistoryView.swift */; };
 		72C8A550254C90DA009AF55D /* DiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C8A54F254C90DA009AF55D /* DiceView.swift */; };
-		F074E2422558A40E0005435A /* DotArrangementLinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F074E2412558A40E0005435A /* DotArrangementLinesTests.swift */; };
+		F074E2422558A40E0005435A /* DotArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F074E2412558A40E0005435A /* DotArrangementTests.swift */; };
+		F074E2472558AC0A0005435A /* DotArrangementWithBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F074E2462558AC0A0005435A /* DotArrangementWithBox.swift */; };
 		F0C5BBB3254C7D9700F1A3CB /* TeamDiceRollerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBB2254C7D9700F1A3CB /* TeamDiceRollerApp.swift */; };
 		F0C5BBB5254C7D9700F1A3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBB4254C7D9700F1A3CB /* ContentView.swift */; };
 		F0C5BBB7254C7D9900F1A3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0C5BBB6254C7D9900F1A3CB /* Assets.xcassets */; };
@@ -21,7 +22,7 @@
 		F0C5BBD5254C7D9900F1A3CB /* TeamDiceRollerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBD4254C7D9900F1A3CB /* TeamDiceRollerUITests.swift */; };
 		F0C5BBEF254DF2FF00F1A3CB /* DottedDiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBEE254DF2FF00F1A3CB /* DottedDiceView.swift */; };
 		F0C5BBF4254DFA9400F1A3CB /* DotArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBF3254DFA9400F1A3CB /* DotArrangement.swift */; };
-		F0C5BBF9254DFB1400F1A3CB /* DotArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBF8254DFB1400F1A3CB /* DotArrangementTests.swift */; };
+		F0C5BBF9254DFB1400F1A3CB /* DotArrangementWithBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C5BBF8254DFB1400F1A3CB /* DotArrangementWithBoxTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +46,8 @@
 		5A7212A1254C86AA005DEB1A /* RollDiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollDiceView.swift; sourceTree = "<group>"; };
 		5A7212A9254CC6D4005DEB1A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		72C8A54F254C90DA009AF55D /* DiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceView.swift; sourceTree = "<group>"; };
-		F074E2412558A40E0005435A /* DotArrangementLinesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotArrangementLinesTests.swift; sourceTree = "<group>"; };
+		F074E2412558A40E0005435A /* DotArrangementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotArrangementTests.swift; sourceTree = "<group>"; };
+		F074E2462558AC0A0005435A /* DotArrangementWithBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotArrangementWithBox.swift; sourceTree = "<group>"; };
 		F0C5BBAF254C7D9700F1A3CB /* TeamDiceRoller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamDiceRoller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C5BBB2254C7D9700F1A3CB /* TeamDiceRollerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDiceRollerApp.swift; sourceTree = "<group>"; };
 		F0C5BBB4254C7D9700F1A3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,7 +64,7 @@
 		F0C5BBD6254C7D9900F1A3CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0C5BBEE254DF2FF00F1A3CB /* DottedDiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedDiceView.swift; sourceTree = "<group>"; };
 		F0C5BBF3254DFA9400F1A3CB /* DotArrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotArrangement.swift; sourceTree = "<group>"; };
-		F0C5BBF8254DFB1400F1A3CB /* DotArrangementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotArrangementTests.swift; sourceTree = "<group>"; };
+		F0C5BBF8254DFB1400F1A3CB /* DotArrangementWithBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotArrangementWithBoxTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				72C8A54F254C90DA009AF55D /* DiceView.swift */,
 				F0C5BBEE254DF2FF00F1A3CB /* DottedDiceView.swift */,
 				F0C5BBF3254DFA9400F1A3CB /* DotArrangement.swift */,
+				F074E2462558AC0A0005435A /* DotArrangementWithBox.swift */,
 				5A7212A9254CC6D4005DEB1A /* HistoryView.swift */,
 			);
 			path = TeamDiceRoller;
@@ -141,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				F0C5BBC9254C7D9900F1A3CB /* TeamDiceRollerTests.swift */,
-				F0C5BBF8254DFB1400F1A3CB /* DotArrangementTests.swift */,
-				F074E2412558A40E0005435A /* DotArrangementLinesTests.swift */,
+				F0C5BBF8254DFB1400F1A3CB /* DotArrangementWithBoxTests.swift */,
+				F074E2412558A40E0005435A /* DotArrangementTests.swift */,
 				F0C5BBCB254C7D9900F1A3CB /* Info.plist */,
 			);
 			path = TeamDiceRollerTests;
@@ -290,6 +293,7 @@
 				F0C5BBBC254C7D9900F1A3CB /* Persistence.swift in Sources */,
 				72C8A550254C90DA009AF55D /* DiceView.swift in Sources */,
 				F0C5BBEF254DF2FF00F1A3CB /* DottedDiceView.swift in Sources */,
+				F074E2472558AC0A0005435A /* DotArrangementWithBox.swift in Sources */,
 				F0C5BBB5254C7D9700F1A3CB /* ContentView.swift in Sources */,
 				F0C5BBB3254C7D9700F1A3CB /* TeamDiceRollerApp.swift in Sources */,
 				5A7212A2254C86AA005DEB1A /* RollDiceView.swift in Sources */,
@@ -302,8 +306,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0C5BBF9254DFB1400F1A3CB /* DotArrangementTests.swift in Sources */,
-				F074E2422558A40E0005435A /* DotArrangementLinesTests.swift in Sources */,
+				F0C5BBF9254DFB1400F1A3CB /* DotArrangementWithBoxTests.swift in Sources */,
+				F074E2422558A40E0005435A /* DotArrangementTests.swift in Sources */,
 				F0C5BBCA254C7D9900F1A3CB /* TeamDiceRollerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

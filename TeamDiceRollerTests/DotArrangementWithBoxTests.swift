@@ -1,24 +1,25 @@
 //
-//  DotArrangementLinesTests.swift
+//  DotArrangementWithBoxTests.swift
 //  TeamDiceRollerTests
 //
-//  Created by Thane Heninger on 11/8/20.
+//  Created by Thane Heninger on 10/31/20.
 //
 
 import XCTest
 @testable import TeamDiceRoller
 
-class DotArrangementLinesTests: XCTestCase {
+class DotArrangementWithBoxTests: XCTestCase {
+
     let noDots = [false, false, false, false, false]
     let centerDot = [false, false, true, false, false]
     let outerDots = [true, false, false, false, true]
     let threeDots = [true, false, true, false, true]
     let allDots = [true, true, true, true, true]
     let mid2Dots = [false, true, false, true, false]
-    let innerThree = [false, true, true, true, false]
-    
+    let outerMidDots = [true, true, false, true, true]
+
     func testOne() throws {
-        let arrangement = DotArrangement(quantity: 1, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 1)
         XCTAssertEqual(arrangement.farSideCount, 0)
         XCTAssertEqual(arrangement.centerCount, 1)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -31,7 +32,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testTwo() throws {
-        let arrangement = DotArrangement(quantity: 2, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 2)
         XCTAssertEqual(arrangement.farSideCount, 1)
         XCTAssertEqual(arrangement.centerCount, 0)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -44,7 +45,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testThree() throws {
-        let arrangement = DotArrangement(quantity: 3, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 3)
         XCTAssertEqual(arrangement.farSideCount, 1)
         XCTAssertEqual(arrangement.centerCount, 1)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -57,7 +58,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testFour() throws {
-        let arrangement = DotArrangement(quantity: 4, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 4)
         XCTAssertEqual(arrangement.farSideCount, 2)
         XCTAssertEqual(arrangement.centerCount, 0)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -70,7 +71,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testFive() throws {
-        let arrangement = DotArrangement(quantity: 5, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 5)
         XCTAssertEqual(arrangement.farSideCount, 2)
         XCTAssertEqual(arrangement.centerCount, 1)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -83,7 +84,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testSix() throws {
-        let arrangement = DotArrangement(quantity: 6, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 6)
         XCTAssertEqual(arrangement.farSideCount, 3)
         XCTAssertEqual(arrangement.centerCount, 0)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -96,7 +97,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testSeven() throws {
-        let arrangement = DotArrangement(quantity: 7, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 7)
         XCTAssertEqual(arrangement.farSideCount, 3)
         XCTAssertEqual(arrangement.centerCount, 1)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -109,7 +110,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testEight() throws {
-        let arrangement = DotArrangement(quantity: 8, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 8)
         XCTAssertEqual(arrangement.farSideCount, 3)
         XCTAssertEqual(arrangement.centerCount, 2)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -122,7 +123,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testNine() throws {
-        let arrangement = DotArrangement(quantity: 9, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 9)
         XCTAssertEqual(arrangement.farSideCount, 3)
         XCTAssertEqual(arrangement.centerCount, 3)
         XCTAssertEqual(arrangement.midSideCount, 0)
@@ -135,7 +136,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testTen() throws {
-        let arrangement = DotArrangement(quantity: 10, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 10)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 0)
         XCTAssertEqual(arrangement.centerCount, 0)
@@ -148,7 +149,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testEleven() throws {
-        let arrangement = DotArrangement(quantity: 11, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 11)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 0)
         XCTAssertEqual(arrangement.centerCount, 1)
@@ -161,7 +162,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testTwelve() throws {
-        let arrangement = DotArrangement(quantity: 12, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 12)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 1)
         XCTAssertEqual(arrangement.centerCount, 0)
@@ -174,7 +175,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testThirteen() throws {
-        let arrangement = DotArrangement(quantity: 13, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 13)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 1)
         XCTAssertEqual(arrangement.centerCount, 1)
@@ -187,7 +188,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testFourteen() throws {
-        let arrangement = DotArrangement(quantity: 14, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 14)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 2)
         XCTAssertEqual(arrangement.centerCount, 0)
@@ -200,7 +201,7 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testFifteen() throws {
-        let arrangement = DotArrangement(quantity: 15, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 15)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 2)
         XCTAssertEqual(arrangement.centerCount, 1)
@@ -213,124 +214,124 @@ class DotArrangementLinesTests: XCTestCase {
     }
     
     func testSixteen() throws {
-        let arrangement = DotArrangement(quantity: 16, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 16)
         XCTAssertEqual(arrangement.farSideCount, 5)
-        XCTAssertEqual(arrangement.midSideCount, 3)
-        XCTAssertEqual(arrangement.centerCount, 0)
+        XCTAssertEqual(arrangement.midSideCount, 2)
+        XCTAssertEqual(arrangement.centerCount, 2)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
-        XCTAssertEqual(arrangement.midLeftDots, innerThree)
-        XCTAssertEqual(arrangement.centerDots, noDots)
-        XCTAssertEqual(arrangement.midRightDots, innerThree)
+        XCTAssertEqual(arrangement.midLeftDots, outerDots)
+        XCTAssertEqual(arrangement.centerDots, outerDots)
+        XCTAssertEqual(arrangement.midRightDots, outerDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
-    
+        
     func testSeventeen() throws {
-        let arrangement = DotArrangement(quantity: 17, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 17)
         XCTAssertEqual(arrangement.farSideCount, 5)
-        XCTAssertEqual(arrangement.midSideCount, 3)
-        XCTAssertEqual(arrangement.centerCount, 1)
+        XCTAssertEqual(arrangement.midSideCount, 2)
+        XCTAssertEqual(arrangement.centerCount, 3)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
-        XCTAssertEqual(arrangement.midLeftDots, innerThree)
-        XCTAssertEqual(arrangement.centerDots, centerDot)
-        XCTAssertEqual(arrangement.midRightDots, innerThree)
+        XCTAssertEqual(arrangement.midLeftDots, outerDots)
+        XCTAssertEqual(arrangement.centerDots, threeDots)
+        XCTAssertEqual(arrangement.midRightDots, outerDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testEighteen() throws {
-        let arrangement = DotArrangement(quantity: 18, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 18)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 3)
         XCTAssertEqual(arrangement.centerCount, 2)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
-        XCTAssertEqual(arrangement.midLeftDots, innerThree)
-        XCTAssertEqual(arrangement.centerDots, mid2Dots)
-        XCTAssertEqual(arrangement.midRightDots, innerThree)
+        XCTAssertEqual(arrangement.midLeftDots, [true, false, false, true, true])
+        XCTAssertEqual(arrangement.centerDots, outerDots)
+        XCTAssertEqual(arrangement.midRightDots, [true, true, false, false, true])
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testNineteen() throws {
-        let arrangement = DotArrangement(quantity: 19, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 19)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 3)
         XCTAssertEqual(arrangement.centerCount, 3)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
-        XCTAssertEqual(arrangement.midLeftDots, innerThree)
-        XCTAssertEqual(arrangement.centerDots, innerThree)
-        XCTAssertEqual(arrangement.midRightDots, innerThree)
+        XCTAssertEqual(arrangement.midLeftDots, [true, false, false, true, true])
+        XCTAssertEqual(arrangement.centerDots, threeDots)
+        XCTAssertEqual(arrangement.midRightDots, [true, true, false, false, true])
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testTwenty() throws {
-        let arrangement = DotArrangement(quantity: 20, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 20)
         XCTAssertEqual(arrangement.farSideCount, 5)
-        XCTAssertEqual(arrangement.midSideCount, 5)
-        XCTAssertEqual(arrangement.centerCount, 0)
+        XCTAssertEqual(arrangement.midSideCount, 4)
+        XCTAssertEqual(arrangement.centerCount, 2)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
-        XCTAssertEqual(arrangement.midLeftDots, allDots)
-        XCTAssertEqual(arrangement.centerDots, noDots)
-        XCTAssertEqual(arrangement.midRightDots, allDots)
+        XCTAssertEqual(arrangement.midLeftDots, outerMidDots)
+        XCTAssertEqual(arrangement.centerDots, outerDots)
+        XCTAssertEqual(arrangement.midRightDots, outerMidDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testTwentyOne() throws {
-        let arrangement = DotArrangement(quantity: 21, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 21)
         XCTAssertEqual(arrangement.farSideCount, 5)
-        XCTAssertEqual(arrangement.midSideCount, 5)
-        XCTAssertEqual(arrangement.centerCount, 1)
+        XCTAssertEqual(arrangement.midSideCount, 4)
+        XCTAssertEqual(arrangement.centerCount, 3)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
-        XCTAssertEqual(arrangement.midLeftDots, allDots)
-        XCTAssertEqual(arrangement.centerDots, centerDot)
-        XCTAssertEqual(arrangement.midRightDots, allDots)
+        XCTAssertEqual(arrangement.midLeftDots, outerMidDots)
+        XCTAssertEqual(arrangement.centerDots, threeDots)
+        XCTAssertEqual(arrangement.midRightDots, outerMidDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testTwentyTwo() throws {
-        let arrangement = DotArrangement(quantity: 22, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 22)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 5)
         XCTAssertEqual(arrangement.centerCount, 2)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
         XCTAssertEqual(arrangement.midLeftDots, allDots)
-        XCTAssertEqual(arrangement.centerDots, mid2Dots)
+        XCTAssertEqual(arrangement.centerDots, outerDots)
         XCTAssertEqual(arrangement.midRightDots, allDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testTwentyThree() throws {
-        let arrangement = DotArrangement(quantity: 23, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 23)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 5)
         XCTAssertEqual(arrangement.centerCount, 3)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
         XCTAssertEqual(arrangement.midLeftDots, allDots)
-        XCTAssertEqual(arrangement.centerDots, innerThree)
+        XCTAssertEqual(arrangement.centerDots, threeDots)
         XCTAssertEqual(arrangement.midRightDots, allDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testTwentyFour() throws {
-        let arrangement = DotArrangement(quantity: 24, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 24)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 5)
         XCTAssertEqual(arrangement.centerCount, 4)
         
         XCTAssertEqual(arrangement.farLeftDots, allDots)
         XCTAssertEqual(arrangement.midLeftDots, allDots)
-        XCTAssertEqual(arrangement.centerDots, [true, true, false, true, true])
+        XCTAssertEqual(arrangement.centerDots, outerMidDots)
         XCTAssertEqual(arrangement.midRightDots, allDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
     }
     
     func testTwentyFive() throws {
-        let arrangement = DotArrangement(quantity: 25, useBoxForSixteen: false)
+        let arrangement = DotArrangementWithBox(quantity: 25)
         XCTAssertEqual(arrangement.farSideCount, 5)
         XCTAssertEqual(arrangement.midSideCount, 5)
         XCTAssertEqual(arrangement.centerCount, 5)
@@ -341,5 +342,13 @@ class DotArrangementLinesTests: XCTestCase {
         XCTAssertEqual(arrangement.centerDots, allDots)
         XCTAssertEqual(arrangement.midRightDots, allDots)
         XCTAssertEqual(arrangement.farRightDots, allDots)
+    }
+    
+    func testAllFalse() throws {
+        XCTAssertTrue(DotArrangementWithBox.allFalse([false, false, false, false, false]))
+        XCTAssertFalse(DotArrangementWithBox.allFalse([true, false, false, false, false]))
+        XCTAssertFalse(DotArrangementWithBox.allFalse([false, false, true, false, false]))
+        XCTAssertFalse(DotArrangementWithBox.allFalse([false, false, false, false, true]))
+        XCTAssertFalse(DotArrangementWithBox.allFalse([true, true, true, true, true]))
     }
 }
