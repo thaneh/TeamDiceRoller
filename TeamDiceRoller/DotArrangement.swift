@@ -9,12 +9,14 @@ import Foundation
 
 struct DotArrangement {
     let quantity: Int
+    let useBoxForSixteen: Bool
     
     static private let max3x3 = 9
     static private let max3x3Sides = max3x3 / 3 * 2
     
     static private let max5x5 = 25
     static private let max5x5Sides = max5x5 / 5 * 2
+    static private let max5x5Sides2 = max5x5 / 5 * 4
     static private let max5x5Ring = 4 * 4
     
     var in3x3: Bool {
@@ -40,10 +42,18 @@ struct DotArrangement {
     var midSideCount: Int {
         if quantity < Self.max5x5Sides {
             return 0
-        } else if quantity < Self.max5x5Ring {
-            return sideFor3x3(with: quantity - Self.max5x5Sides)
+        } else if useBoxForSixteen {
+            if quantity < Self.max5x5Ring {
+                return sideFor3x3(with: quantity - Self.max5x5Sides)
+            } else {
+                return 2 + sideFor3x3(with: quantity - Self.max5x5Ring)
+            }
         } else {
-            return 2 + sideFor3x3(with: quantity - Self.max5x5Ring)
+            if quantity < Self.max5x5Sides2 {
+                return sideFor3x3(with: quantity - Self.max5x5Sides)
+            } else {
+                return 5
+            }
         }
     }
     
@@ -58,39 +68,72 @@ struct DotArrangement {
     var centerCount: Int {
         if quantity < Self.max5x5Sides {
             return centerFor3x3(with: quantity)
-        } else if quantity < Self.max5x5Ring {
-            return centerFor3x3(with: quantity - Self.max5x5Sides)
+        } else if useBoxForSixteen {
+            if quantity < Self.max5x5Ring {
+                return centerFor3x3(with: quantity - Self.max5x5Sides)
+            } else {
+                return 2 + centerFor3x3(with: quantity - Self.max5x5Ring)
+            }
         } else {
-            return 2 + centerFor3x3(with: quantity - Self.max5x5Ring)
+            if quantity < Self.max5x5Sides2 {
+                return centerFor3x3(with: quantity - 10)
+            } else {
+                return quantity - Self.max5x5Sides2
+            }
         }
     }
     
     var farLeftDots: [Bool] {
-        [farSideCount > 1, farSideCount > 4, farSideCount > 2, farSideCount > 4, farSideCount > 0]
+        [farSideCount > 1, farSideCount > 4, farSideCount > 2,
+         farSideCount > 4, farSideCount > 0]
     }
     
     var midLeftDots: [Bool] {
-        if quantity < Self.max5x5Ring {
-            return [false, midSideCount > 1, false, midSideCount > 0, false]
+        if useBoxForSixteen {
+            if quantity < Self.max5x5Ring {
+                return [false, midSideCount > 1, false, midSideCount > 0, false]
+            } else {
+                return [true, midSideCount > 3, midSideCount > 4,
+                        midSideCount > 2, true]
+            }
         } else {
-            return [true, midSideCount > 3, midSideCount > 4, midSideCount > 2, true]
+            return [midSideCount > 3, midSideCount > 1, midSideCount > 2,
+                    midSideCount > 0, midSideCount > 3]
         }
     }
     
     var centerDots: [Bool] {
-        [centerCount > 1, centerCount > 3, centerCount % 2 == 1, centerCount > 3, centerCount > 1]
+        if useBoxForSixteen {
+            return [centerCount > 1, centerCount > 3, centerCount % 2 == 1,
+                    centerCount > 3, centerCount > 1]
+        } else {
+            if quantity < Self.max5x5Sides {
+                return [centerCount > 1, centerCount > 3, centerCount % 2 == 1,
+                        centerCount > 3, centerCount > 1]
+            } else {
+                return [centerCount > 3, centerCount > 1, centerCount % 2 == 1,
+                        centerCount > 1, centerCount > 3]
+            }
+        }
     }
     
     var midRightDots: [Bool] {
-        if quantity < Self.max5x5Ring {
-            return [false, midSideCount > 0, false, midSideCount > 1, false]
+        if useBoxForSixteen {
+            if quantity < Self.max5x5Ring {
+                return [false, midSideCount > 0, false, midSideCount > 1, false]
+            } else {
+                return [true, midSideCount > 2, midSideCount > 4,
+                        midSideCount > 3, true]
+            }
         } else {
-            return [true, midSideCount > 2, midSideCount > 4, midSideCount > 3, true]
+            return [midSideCount > 3, midSideCount > 0, midSideCount > 2,
+                    midSideCount > 1, midSideCount > 3]
         }
     }
     
     var farRightDots: [Bool] {
-        [farSideCount > 0, farSideCount > 4, farSideCount > 2, farSideCount > 4, farSideCount > 1]
+        [farSideCount > 0, farSideCount > 4, farSideCount > 2,
+         farSideCount > 4, farSideCount > 1]
     }
     
     static func allFalse(_ values: [Bool]) -> Bool {

@@ -41,22 +41,23 @@ struct DotStack: View {
 
 struct ArrangedDots: View {
     let quantity: Int
+    let useBoxForSixteen: Bool
     
     func hasDots(dots: [Bool]) -> Bool {
         !DotArrangement.allFalse(dots)
     }
     
     func dotSize(from totalWidth: CGFloat) -> CGFloat {
-        DotArrangement(quantity: quantity).in3x3 ?
+        DotArrangement(quantity: quantity, useBoxForSixteen: useBoxForSixteen).in3x3 ?
             totalWidth * 0.26 : totalWidth * 0.16
     }
     
     var firstStack: [Bool] {
-        DotArrangement(quantity: quantity).farLeftDots
+        DotArrangement(quantity: quantity, useBoxForSixteen: useBoxForSixteen).farLeftDots
     }
     
     var stacksExceptFirst: [[Bool]] {
-        let arrangement = DotArrangement(quantity: quantity)
+        let arrangement = DotArrangement(quantity: quantity, useBoxForSixteen: useBoxForSixteen)
         return [arrangement.midLeftDots,
                 arrangement.centerDots,
                 arrangement.midRightDots,
@@ -94,6 +95,7 @@ struct ArrangedDots: View {
 
 struct DottedDieView: View {
     let value: Int
+    var useBoxForSixteen = false
     
     var quantity: Int {
         (value - 1) % 25 + 1
@@ -104,7 +106,7 @@ struct DottedDieView: View {
     }
     
     var stacks: [[Bool]] {
-        let arrangement = DotArrangement(quantity: quantity)
+        let arrangement = DotArrangement(quantity: quantity, useBoxForSixteen: useBoxForSixteen)
         return [arrangement.farLeftDots,
                 arrangement.midLeftDots,
                 arrangement.centerDots,
@@ -113,7 +115,7 @@ struct DottedDieView: View {
     }
     
     func padding(with geo: GeometryProxy) -> CGFloat {
-        if DotArrangement(quantity: quantity).in3x3 {
+        if DotArrangement(quantity: quantity, useBoxForSixteen: useBoxForSixteen).in3x3 {
             return geo.size.width * 0.15
         } else {
             return geo.size.width * 0.16
@@ -121,7 +123,7 @@ struct DottedDieView: View {
     }
     
     func spacing(with geo: GeometryProxy) -> CGFloat {
-        if DotArrangement(quantity: quantity).in3x3 {
+        if DotArrangement(quantity: quantity, useBoxForSixteen: useBoxForSixteen).in3x3 {
             return geo.size.width * 0.13
         } else {
             return geo.size.width * 0.15
@@ -138,7 +140,7 @@ struct DottedDieView: View {
     
     func dotSize(with geo: GeometryProxy) -> CGFloat {
         let totalWidth = geo.size.width
-        return DotArrangement(quantity: quantity).in3x3 ?
+        return DotArrangement(quantity: quantity, useBoxForSixteen: useBoxForSixteen).in3x3 ?
             totalWidth * 0.18 : totalWidth * 0.10
     }
     
